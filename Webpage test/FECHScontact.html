@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Florida East Coast Health Services</title>
+    <style>
+        body {
+            background-color: rgb(58, 196, 159);
+            margin: 0;
+            font-family: 'Times New Roman', Times, serif;
+        }
+        .header-img {
+            position: relative;
+            height: 600px;
+            background-image: url('images/contactpic.webp');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            z-index: -1;
+        }
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            top: 0;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.575);
+            padding: 10px 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.534);
+            position: fixed;
+            z-index: 10;
+        }
+        .menu-button {
+            border: none;
+            padding: 10px 15px;
+            font-size: 20px;
+            font-family: 'Times New Roman', Times, serif;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: rgba(255, 255, 255, 0.575);
+            color: black;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.534);
+            width: 100%; 
+            max-width: 300px; 
+            text-align: center;
+        }
+        .title {
+            font-size: 40px;
+            font-weight: bold;
+            text-align: center;
+            flex-grow: 1;
+            text-decoration: underline;
+        }
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            gap: 10px;
+            background-color: rgba(255, 255, 255, 0.575);
+            position: fixed;
+            top: 72px;
+            left:0.5px; /* Add margin from the left */
+            right: 10%; /* Add margin from the right */
+            max-width: 15%; /* Restrict the total width */
+            box-shadow: 0 2px 5px rgba(0, 0, 0,0.534);
+            z-index: 100;
+            padding: 10px;
+            box-sizing: border-box; /* Ensure padding is included in dimensions */
+        }
+        .mobile-menu.active {
+            display: flex;
+        }
+        .hamburger {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+            background-color: rgba(255, 255, 255, 0);
+            color: black;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+        }
+        @media (min-width: 1280px) {
+            .mobile-menu {
+                display: flex; /* Ensure the menu is visible */
+                flex-direction: row; /* Arrange menu items horizontally */
+                justify-content: center;
+                background-color: transparent; /* No background for fullscreen */
+                width: 100%;
+                gap: 20px; /* Spacing between menu items */
+                margin-top: -10px; /* Positions the menu below the topbar */
+                max-width: none; /* Removes width restrictions */
+                left: auto; /* Centers the menu */
+                right: auto;
+                z-index: 5; /* Ensures the menu sits above the header image */
+            }
+
+            .hamburger {
+                display: none;
+            }
+        }
+        @media (max-width: 1280px) {
+            .hamburger {
+                display: block;
+            }
+
+            .mobile-menu {
+                display: none;
+            }
+
+            .mobile-menu.active {
+                display: flex;
+            }
+        }
+        .contact-section {
+          background-color: rgba(255, 255, 255, 0.829);
+          width: 60%;
+          margin: 0 auto;
+          font-size: 30px;
+        }
+        .popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .popup-content {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="header-img"></div>
+    <div class="topbar">
+        <button class="hamburger" onclick="toggleMenu()">☰</button>
+        <div class="title">Florida East Coast Health Services</div>
+    </div>
+    <div class="mobile-menu">
+        <button class="menu-button" onclick="location.href='FECHS.html'">Home</button>
+        <button class="menu-button" onclick="location.href='FECHSSP.html'">Shelina Paradis</button>
+        <button class="menu-button" onclick="showPopup()">Staff</button>
+        <button class="menu-button" onclick="showPopup()">Services</button>
+        <button class="menu-button" onclick="showPopup()">Testimonials</button>
+        <button class="menu-button" onclick="location.href='FECHScontact.html'">Contact</button>
+    </div>
+    <div id="popup" class="popup hidden">
+        <div class="popup-content">
+          <p>Sorry, this page is unavailable at this time.</p>
+          <button onclick="hidePopup()">Close</button>
+        </div>
+    </div>
+    <div class="contact-section" id="contact">
+      <p style="text-align: center; text-decoration: underline; font-size: 40px;">Contact Us!</p>
+      <p>Florida East Coast Health Services, LLC</p>
+      <p>Melbourne, Florida 32935</p>
+      <p>321-591-0100 (office)</p>      
+      <p>866-666-0099 (fax)</p>
+    </div>
+    <script>
+        function toggleMenu() {
+            const menu = document.querySelector('.mobile-menu');
+            menu.classList.toggle('active');
+        }
+        function showPopup() {
+            document.getElementById('popup').classList.remove('hidden');
+        }
+
+        function hidePopup() {
+            document.getElementById('popup').classList.add('hidden');
+        }
+    </script>
+</body>
+</html>

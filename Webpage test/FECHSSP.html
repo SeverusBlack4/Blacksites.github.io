@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Florida East Coast Health Services</title>
+    <style>
+        body {
+            background-color: rgb(58, 196, 159);
+            margin: 0;
+            font-family: 'Times New Roman', Times, serif;
+        }
+        .header-img {
+            position: relative;
+            height: 600px;
+            background-image: url('images/169953.webp');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            z-index: -1;
+        }
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            top: 0;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.575);
+            padding: 10px 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.534);
+            position: fixed;
+            z-index: 10;
+        }
+        .menu-button {
+            border: none;
+            padding: 10px 15px;
+            font-size: 20px;
+            font-family: 'Times New Roman', Times, serif;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: rgba(255, 255, 255, 0.575);
+            color: black;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.534);
+            width: 100%; 
+            max-width: 300px; 
+            word-wrap: break-word; 
+            white-space: normal; 
+            text-align: center;
+            box-sizing: border-box; 
+        }
+
+        .menu button:hover {
+            color: rgb(173, 243, 237);
+            background-color: #f0f0f0;
+        }
+
+        .title {
+            font-size: 40px;
+            font-weight: bold;
+            text-align: center;
+            flex-grow: 1;
+            text-decoration: underline;
+        }
+
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            gap: 10px;
+            background-color: rgba(255, 255, 255, 0.575);
+            position: fixed;
+            top: 72px;
+            left:0.5px; /* Add margin from the left */
+            right: 10%; /* Add margin from the right */
+            max-width: 15%; /* Restrict the total width */
+            box-shadow: 0 2px 5px rgba(0, 0, 0,0.534);
+            z-index: 100;
+            padding: 10px;
+            box-sizing: border-box; /* Ensure padding is included in dimensions */
+        }
+
+        .mobile-menu.active {
+            display: flex;
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+            background-color: rgba(255, 255, 255, 0);
+            color: black;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+        }
+        .about-section {
+            position: relative;
+            z-index: 1; /* Ensures it appears above the header */
+            padding: 20px;
+            margin: -300px 70px 70px; /* Pulls the section up to overlap the header */
+            background-color:rgba(255, 255, 255, 0.575);
+            box-shadow: 0 2px 5px rgba(0, 0, 0,0.534);
+            text-align: center;
+            margin-bottom: 5px;
+        }
+        .about-section h2 {
+            font-size: 28px;
+            color: #333;
+        }
+
+        .about-section p {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #555;
+            text-align: justify;
+        }
+
+        .about-section img {
+            width: 50%;
+            
+            height: auto;
+            border-radius: 60px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.534);
+        }
+        .pic-title {
+          width: 300px;
+          font-size: 30px;
+          font-weight: bold;
+          margin: 0 auto;
+          align-self: center;
+          border-radius: 10px;
+          background-color: rgba(255, 255, 255, 0.829);
+        }
+        .credentials {
+            background-color: rgba(255, 255, 255, 0.829);
+            width: 50%;
+            margin: 0 auto;
+            border-radius: 10px;
+        }
+        .credentials p {
+            margin-bottom: -15px;
+            color:black;
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+            border-radius: 10px;
+        }
+        .bio {
+            background-color: rgba(255, 255, 255, 0.829);
+            color:black;
+            width: 60%;
+            margin: 0 auto;
+            border-radius: 10px;
+            font-weight: bold;
+        }
+
+        @media (min-width: 1280px) {
+            .mobile-menu {
+              display: flex; /* Ensure the menu is visible */
+              flex-direction: row; /* Arrange menu items horizontally */
+              justify-content: center;
+              background-color: transparent; /* No background for fullscreen */
+              width: 100%;
+              gap: 20px; /* Spacing between menu items */
+              margin-top: -10px; /* Positions the menu below the topbar */
+              max-width: none; /* Removes width restrictions */
+              left: auto; /* Centers the menu */
+              right: auto;
+              z-index: 5; /* Ensures the menu sits above the header image */
+            }
+
+            .hamburger {
+                display: none;
+            }
+            .about-section img {
+            max-width: 30%;
+            height: auto;
+            border-radius: 60px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.534);
+            }
+            .credentials {
+            background-color: rgba(255, 255, 255, 0.829);
+            width: 20%;
+            margin: 0 auto;
+            }
+        }
+
+        @media (max-width: 1280px) {
+            .hamburger {
+                display: block;
+            }
+
+            .mobile-menu {
+                display: none;
+            }
+
+            .mobile-menu.active {
+                display: flex;
+            }
+        }
+        .resumecvbutton {
+            font-size: 18px;
+            font-weight: bold;
+            border-width: 2px;
+            border-radius: 5px;
+        }
+        .returnButton {
+            font-size: 18px;
+            font-weight: bold;
+            border-width: 2px;
+            border-radius: 5px;
+            margin-top: 5px;
+        }
+        .resumecvbox {
+            background-color: rgba(255, 255, 255, 0.829);
+            color:black;
+            width: 100%;
+            margin: 0 auto;
+            border-radius: 10px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .resumecvsection {
+            position: relative;
+            z-index: 1; /* Ensures it appears above the header */
+            padding: 20px;
+            margin: 0 auto; /* Pulls the section up to overlap the header */
+            background-color:rgba(255, 255, 255, 0.575);
+            box-shadow: 0 2px 5px rgba(0, 0, 0,0.534);
+            text-align: center;
+            width: 81%;
+        }
+        .popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .popup-content {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="header-img"></div>
+    <div class="topbar">
+        <button class="hamburger" onclick="toggleMenu()">☰</button>
+        <div class="title">Florida East Coast Health Services</div>
+    </div>
+    <div class="mobile-menu">
+        <button class="menu-button" onclick="location.href='FECHS.html'">Home</button>
+        <button class="menu-button" onclick="location.href='FECHSSP.html'">Shelina Paradis</button>
+        <button class="menu-button" onclick="showPopup()">Staff</button>
+        <button class="menu-button" onclick="showPopup()">Services</button>
+        <button class="menu-button" onclick="showPopup()">Testimonials</button>
+        <button class="menu-button" onclick="location.href='FECHScontact.html'">Contact</button>
+    </div>
+    <div id="popup" class="popup hidden">
+        <div class="popup-content">
+          <p>Sorry, this page is unavailable at this time.</p>
+          <button onclick="hidePopup()">Close</button>
+        </div>
+    </div>
+    <div class="about-section" id="about">
+        <img src="images/1516999430845.jpg" alt="Nurse Practitioner">
+        <div class="pic-title">
+            Shelina Paradis, ARNP-BC
+            <p style="font-size: 20px; font-weight:bold; text-align:center;">M.N.S, GNP-C</p>
+        </div>
+        <div class="bio">
+            <p>
+                Shelina has been a nurse practitioner
+                since 2011, specializing in Gerontology
+                and Cardiovascular nursing through the
+                American Nurses Credentialing Center.
+                Shelina has dedicated her entire career to
+                the care of Brevard County’s Aging and
+                Elderly population for the last 20 years.
+                She was a successful operations partner
+                from 1997-2001 in two Assisted Living
+                Facilities. She left custodial care to pursue
+                professional nursing, which she spent
+                working in every level of care and nearly
+                every setting. This has given her a rich
+                background of facilitating communication
+                and interactions with her peers at all
+                levels.
+            </p>
+
+            <p>
+                Shelina founded Florida East Coast Health
+                Services, LLC in 2014 and began working
+                in collaboration with many local physicians
+                and specialists. She has three main
+                objectives for her career: to continue
+                expanding Florida East Coast Health
+                Services, LLC; to expand elder-specific
+                health care in ALFs and residential homes
+                throughout the region; and to be active in
+                representing and marketing in the
+                healthcare industry.
+            </p>
+            <p>
+                Shelina is married and has four children
+                who are now 21 to 32 years old.
+            </p>
+        </div>
+        <div id="buttonContainer" style="text-align: center;">
+            <button id="resumecvButton" class="resumecvbutton" onclick="showResumeCVSection()">Resume CV</button>
+        </div>
+    </div>
+
+    <div id="resumecvsection" class="resumecvsection" style="display: none;">
+        <div id="resumebox" style="display: none;" class="resumecvbox">
+            <h2 style="text-align:center;">Resume CV</h2>
+            <p></p>
+            <iframe
+                src="Shelina_CV_12.2021.pdf"
+                style="width: 100%; height: 600px; border: none;">
+            </iframe>
+        </div>
+        <button id="returnButton" class="resumecvbutton" onclick="returnToOrigin()">Close Resume/CV</button>
+    </div>
+    <script>
+        function toggleMenu() {
+            const menu = document.querySelector('.mobile-menu');
+            menu.classList.toggle('active');
+        }
+        function showResumeCVSection() {
+            const buttonContainer = document.getElementById('buttonContainer');
+            buttonContainer.style.display = 'none';
+
+            const resumeSection = document.getElementById('resumecvsection');
+            resumeSection.style.display = 'block';
+
+            const resumecvbox = document.getElementById('resumebox');
+            resumebox.style.display= 'block';
+        }
+        function returnToOrigin() {
+            const resumecvsection = document.getElementById('resumecvsection');
+            resumecvsection.style.display = 'none'; // Hide the resume section
+
+            const resumecvbox = document.getElementById('resumebox');
+            resumecvbox.style.display = 'none'; // Hide the resume box
+
+            const buttonContainer = document.getElementById('buttonContainer');
+            buttonContainer.style.display = 'block'; // Show the Resume CV button 
+        }
+        function showPopup() {
+            document.getElementById('popup').classList.remove('hidden');
+        }
+
+        function hidePopup() {
+            document.getElementById('popup').classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
